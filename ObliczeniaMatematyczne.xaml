@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjektTales.ObliczeniaMatematyczne"
+             Title="Ciągi Matematyczne">
+    <VerticalStackLayout>
+        <Label Text="Obliczenia Matematyczne" FontSize="Medium" />
+        <Label Text="Podaj a1" />
+        <Entry x:Name="a1" MaxLength="10" Keyboard="Numeric" TextChanged="Reset_Result"/>
+        <Label Text="Podaj r" />
+        <Entry x:Name="r" MaxLength="10" Keyboard="Numeric" TextChanged="Reset_Result"/>
+        <Label Text="Podaj N" />
+        <Entry x:Name="n" MaxLength="10" Keyboard="Numeric" TextChanged="Reset_Result"/>
+        <Button Text="Oblicz" Clicked="Calculate_Clicked" />
+        <Label x:Name="result" FontSize="Medium" HorizontalTextAlignment="Center" />
+    </VerticalStackLayout>
+</ContentPage>
