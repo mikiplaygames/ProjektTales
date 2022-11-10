@@ -6,6 +6,7 @@ public partial class AppShell : Shell
 	{
 		InitializeComponent();
 
-		Routing.RegisterRoute(nameof(ObliczeniaMatematyczne), typeof(ObliczeniaMatematyczne));
-	}
+		Routing.RegisterRoute(nameof(EquationUsePage), typeof(EquationUsePage));
+        Routing.RegisterRoute(nameof(EquationCreatePage), typeof(EquationCreatePage));
+    }
 }

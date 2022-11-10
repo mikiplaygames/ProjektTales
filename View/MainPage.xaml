@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ProjektTales.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:datamodel="clr-namespace:ProjektTales.Model"
+    xmlns:model="clr-namespace:ProjektTales"
+    xmlns:viewmodel="clr-namespace:ProjektTales.ViewModels"
+    Title="{Binding Title}"
+    x:DataType="viewmodel:EquationListViewModel">
+
+    <Grid
+        Padding="20"
+        BackgroundColor="DimGray"
+        ColumnDefinitions="*, *"
+        RowDefinitions="*, Auto">
+        <CollectionView
+            Grid.Row="0"
+            Grid.ColumnSpan="2"
+            ItemsSource="{Binding Equations}"
+            SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="datamodel:EquationStats">
+                    <Frame Style="{StaticResource CardView}">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EquationListViewModel}}, Path=EnterEquationModeCommand}" CommandParameter="{Binding .}" />
+                        </Frame.GestureRecognizers>
+                        <Label
+                            BackgroundColor="SlateGray"
+                            Text="{Binding MathExpression}"
+                            TextColor="FloralWhite" />
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button
+            Grid.Row="1"
+            Command="{Binding LoadEquationsCommand}"
+            IsEnabled="{Binding IsNotBusy}"
+            Text="Load Equations" />
+        <Button
+            Grid.Row="1"
+            Grid.Column="1"
+            Clicked="Create_Clicked"
+            IsEnabled="True"
+            Text="Create Equations" />
+        <ActivityIndicator
+            Grid.RowSpan="2"
+            HorizontalOptions="FillAndExpand"
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="CenterAndExpand" />
+    </Grid>
+</ContentPage>

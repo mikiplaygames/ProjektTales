@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿global using ProjektTales.Model;
+using Microsoft.Extensions.Logging;
+using ProjektTales.Services;
+using ProjektTales.ViewModels;
 
 namespace ProjektTales;
 
@@ -16,7 +19,13 @@ public static class MauiProgram
 			});
 
 		builder.Services.AddSingleton<MainPage>();
-        builder.Services.AddTransient<ObliczeniaMatematyczne>();
+		builder.Services.AddTransient<EquationUsePage>();
+
+		builder.Services.AddSingleton<EquationListViewModel>();
+        builder.Services.AddTransient<EquationUseViewModel>();
+
+        builder.Services.AddSingleton<EquationService>();
+        
 #if DEBUG
         builder.Logging.AddDebug();
 #endif

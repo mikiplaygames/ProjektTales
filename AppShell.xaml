@@ -6,7 +6,9 @@
     xmlns:local="clr-namespace:ProjektTales"
     Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent Title="Aplikacja Matematyczna MIKI HEAD DEV" ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage" Icon="Resources/AppIcon/AppIcon.png">
-
-    </ShellContent>
+    <ShellContent
+        Title="Aplikacja Matematyczna MIKI HEAD DEV"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Icon="Resources/AppIcon/AppIcon.png"
+        Route="MainPage" />
 </Shell>
