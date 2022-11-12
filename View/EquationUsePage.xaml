@@ -3,38 +3,41 @@
     x:Class="ProjektTales.EquationUsePage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="EquationUsePage">
+    xmlns:datamodel="clr-namespace:ProjektTales.Model"
+    xmlns:model="clr-namespace:ProjektTales"
+    xmlns:viewmodel="clr-namespace:ProjektTales.ViewModels"
+    Title="{Binding EquationStats.Name}"
+    x:DataType="viewmodel:EquationUseViewModel"
+    Loaded="Page_Loaded">
+
     <VerticalStackLayout>
-        <Label FontSize="Medium" Text="Obliczenia Matematyczne" />
+        <Grid RowDefinitions="Auto,Auto,50">
+            <CollectionView
+                Grid.Row="0"
+                ItemsSource="{Binding EquationStats.Searched}"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Entry
+                            x:Name="{Binding .}"
+                            Keyboard="Numeric"
+                            Placeholder="{Binding .}"
+                            TextChanged="Input_Changed" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-        <Label HorizontalTextAlignment="Center" Text="Podaj a1" />
-        <Entry
-            x:Name="a1"
-            Keyboard="Numeric"
-            TextChanged="Reset_Result" />
+            <Label
+                x:Name="result"
+                Grid.Row="1"
+                Padding="10"
+                FontSize="Medium"
+                HorizontalTextAlignment="Center" />
+            <Button
+                Grid.Row="2"
+                Clicked="Calculate_Clicked"
+                Text="Oblicz" />
 
-        <Label HorizontalTextAlignment="Center" Text="Podaj r" />
-        <Entry
-            x:Name="r"
-            Keyboard="Numeric"
-            TextChanged="Reset_Result" />
-
-        <Label HorizontalTextAlignment="Center" Text="Podaj N" />
-        <Entry
-            x:Name="n"
-            Keyboard="Numeric"
-            TextChanged="Reset_Result" />
-
-        <Label HorizontalTextAlignment="Center" Text="Podaj Sn" />
-        <Entry
-            x:Name="Sn"
-            Keyboard="Numeric"
-            TextChanged="Reset_Result" />
-
-        <Button Clicked="Calculate_Clicked" Text="Oblicz" />
-        <Label
-            x:Name="result"
-            FontSize="Medium"
-            HorizontalTextAlignment="Center" />
+        </Grid>
     </VerticalStackLayout>
 </ContentPage>

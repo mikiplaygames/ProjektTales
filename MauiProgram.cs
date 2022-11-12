@@ -19,9 +19,9 @@ public static class MauiProgram
 			});
 
 		builder.Services.AddSingleton<MainPage>();
-		builder.Services.AddTransient<EquationUsePage>();
+        builder.Services.AddSingleton<EquationListViewModel>();
 
-		builder.Services.AddSingleton<EquationListViewModel>();
+        builder.Services.AddTransient<EquationUsePage>();
         builder.Services.AddTransient<EquationUseViewModel>();
 
         builder.Services.AddSingleton<EquationService>();

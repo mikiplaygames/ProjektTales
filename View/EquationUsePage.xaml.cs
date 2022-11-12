@@ -1,59 +1,48 @@
+using AngouriMath;
+using AngouriMath.Extensions;
 using ProjektTales.ViewModels;
+using ProjektTales.Model;
 
 namespace ProjektTales;
 
 public partial class EquationUsePage : ContentPage
 {
-	public EquationUsePage(EquationListViewModel equationListViewModel)
+    public EquationUsePage(EquationUseViewModel equationUseViewModel)
 	{
 		InitializeComponent();
-        BindingContext = equationListViewModel;
+        BindingContext = equationUseViewModel;
     }
 
     protected override void OnNavigatedTo(NavigatedToEventArgs args)
     {
         base.OnNavigatedTo(args);
     }
+    
+    Entity selectedExpr;
+    Entity createdExpr;
 
     private void Calculate_Clicked(object sender, EventArgs e)
     {
-        if (Sn.Text == null || Sn.Text == "")
-        {
-            CalculateSn();
-        }
-        else if (n.Text == null || n.Text == "")
-        {
-            CalculateN();
-        }
+        result.Text = createdExpr.ToString() + "  |  " + selectedExpr.ToString();
+    }
+    
+    private void Input_Changed(object sender, TextChangedEventArgs e)
+    {
+        Entry entry = (Entry)sender;
+        string variable = entry.Placeholder;
+
+        float.TryParse(entry.Text, out float value);
+
+        result.Text = $"{variable} - nazwa zmienna,  dane zmienneh  {value}";
+
+        createdExpr = selectedExpr.Substitute(variable, value); // sie zapomianaj zmeinne inne ustawione JESTSMY TAK BLISKO
     }
 
-    private void CalculateN()
+    private void Page_Loaded(object sender, EventArgs e)
     {
-        //double calculatedResult;
-
-        double.TryParse(a1.Text, out double _a1);
-        double.TryParse(r.Text, out double _r);
-        int.TryParse(Sn.Text, out int _Sn);
-    }
-
-    private void CalculateSn()
-    {
-        double calculatedResult;
-        double _an;
-
-        double.TryParse(a1.Text, out double _a1);
-        double.TryParse(r.Text, out double _r);
-        int.TryParse(n.Text, out int _n);
-
-        _an = _a1 + (_n - 1) * _r;
-
-        calculatedResult = (_a1 + _an) / 2 * _n;
-
-        result.Text = calculatedResult.ToString();
-    }
-
-    private void Reset_Result(object sender, EventArgs e)
-    {
-        result.Text = "";
+        ContentPage page = (ContentPage)sender;
+        EquationUseViewModel useViewModel = (EquationUseViewModel)page.BindingContext;
+        EquationStats es = useViewModel.EquationStats;
+        selectedExpr = es.MathExpression;
     }
 }

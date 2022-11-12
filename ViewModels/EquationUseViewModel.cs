@@ -2,12 +2,12 @@
 
 namespace ProjektTales.ViewModels;
 
-[QueryProperty("EquationStats", "EquationStats")]
+[QueryProperty(nameof(EquationStats), "EquationStats")]
 public partial class EquationUseViewModel : BaseViewModel
 {
     public EquationUseViewModel()
     {
-        
+
     }
 
     [ObservableProperty]

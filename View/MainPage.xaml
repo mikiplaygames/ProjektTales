@@ -27,7 +27,7 @@
                         </Frame.GestureRecognizers>
                         <Label
                             BackgroundColor="SlateGray"
-                            Text="{Binding MathExpression}"
+                            Text="{Binding Name}"
                             TextColor="FloralWhite" />
                     </Frame>
                 </DataTemplate>
@@ -42,8 +42,8 @@
         <Button
             Grid.Row="1"
             Grid.Column="1"
-            Clicked="Create_Clicked"
-            IsEnabled="True"
+            Command="{Binding EnterCreateModeCommand}"
+            IsEnabled="{Binding IsNotBusy}"
             Text="Create Equations" />
         <ActivityIndicator
             Grid.RowSpan="2"

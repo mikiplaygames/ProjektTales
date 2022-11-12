@@ -1,18 +1,22 @@
 [
   {
-    "Name": "sui",
-    "MathExpression": "bra"
+    "Name": "Suma Ciągu Artmetycznego",
+    "Searched": ["a1","an","n"],
+    "MathExpression": "(a1 + an) / 2 * n"
   },
   {
-    "Name": "bes",
-    "MathExpression": "aaa"
+    "Name": "N w ciągu Artmetycznym",
+    "Searched": [ "x","d" ],
+    "MathExpression": "x*d"
   },
   {
-    "Name": "ujsd",
-    "MathExpression": "rtb"
+    "Name": "Suma Ciągu Geometrycznego",
+    "Searched": [ "s" ],
+    "MathExpression": "2s"
   },
   {
-    "Name": "5dsdf",
-    "MathExpression": "adaa222"
+    "Name": "N w ciągu Geometrycznym",
+    "Searched": [ "x", "y" ],
+    "MathExpression": "x+y*2"
   }
 ]
