@@ -30,7 +30,7 @@ public partial class EquationUsePage : ContentPage
             createdExpr = createdExpr.Substitute(pair.Key, pair.Value);
         }
         string answer = createdExpr.EvalNumerical().ToString();
-        result.Text = createdExpr.ToString() + "  |  " + selectedExpr.ToString() + "  |  " + answer;
+        result.Text = selectedExpr.ToString() + "  |  " + createdExpr.ToString() + "  |  " + answer;
     }
 
     private void Input_Changed(object sender, TextChangedEventArgs e)
@@ -39,9 +39,7 @@ public partial class EquationUsePage : ContentPage
         string variable = entry.Placeholder;
 
         float.TryParse(entry.Text, out float value);
-
-        result.Text = $"{variable} - nazwa zmienna,  dane zmienneh  {value}";
-
+        
         if (variables.ContainsKey(variable))
             variables[variable] = value;
         else

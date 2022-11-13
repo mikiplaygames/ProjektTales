@@ -21,14 +21,22 @@
             SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="datamodel:EquationStats">
-                    <Frame Style="{StaticResource CardView}">
+                    <Frame
+                        Padding="15"
+                        BorderColor="WhiteSmoke"
+                        CornerRadius="15"
+                        HasShadow="True"
+                        IsClippedToBounds="True">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EquationListViewModel}}, Path=EnterEquationModeCommand}" CommandParameter="{Binding .}" />
                         </Frame.GestureRecognizers>
                         <Label
-                            BackgroundColor="SlateGray"
+                            Padding="5"
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            HorizontalTextAlignment="Center"
                             Text="{Binding Name}"
-                            TextColor="FloralWhite" />
+                            TextColor="DarkViolet" />
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
@@ -46,7 +54,8 @@
             IsEnabled="{Binding IsNotBusy}"
             Text="Create Equations" />
         <ActivityIndicator
-            Grid.RowSpan="2"
+            Grid.RowSpan="3"
+            Grid.ColumnSpan="2"
             HorizontalOptions="FillAndExpand"
             IsRunning="{Binding IsBusy}"
             IsVisible="{Binding IsBusy}"
