@@ -1,22 +1,22 @@
 [
   {
+    "Name": "N-ty wyraz ciągu artmetycznego",
+    "Searched": [ "ajeden", "n", "r" ],
+    "MathExpression": "ajeden + (n-1)r"
+  },
+  {
     "Name": "Suma Ciągu Artmetycznego",
     "Searched": [ "ajeden", "an", "n" ],
     "MathExpression": "(ajeden + an) / 2 * n"
   },
   {
-    "Name": "N w ciągu Artmetycznym",
-    "Searched": [ "x", "d" ],
-    "MathExpression": "x*d"
+    "Name": "N w ciągu Geometrycznym",
+    "Searched": [ "ajeden", "q", "n" ],
+    "MathExpression": "ajeden * (q^(n-1))"
   },
   {
     "Name": "Suma Ciągu Geometrycznego",
-    "Searched": [ "s" ],
-    "MathExpression": "2s"
-  },
-  {
-    "Name": "N w ciągu Geometrycznym",
-    "Searched": [ "x", "y" ],
-    "MathExpression": "x+y*2"
+    "Searched": [ "ajeden", "q", "n" ],
+    "MathExpression": "((1-q^n)/(1-q)) * ajeden"
   }
 ]
