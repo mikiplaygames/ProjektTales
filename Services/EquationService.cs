@@ -10,7 +10,6 @@ namespace ProjektTales.Services
 
         public async Task<List<EquationStats>> GetEquasions()
         {
-            
             using var stream = await FileSystem.OpenAppPackageFileAsync("equations.json");
             using var reader = new StreamReader(stream);
             var contents = await reader.ReadToEndAsync();

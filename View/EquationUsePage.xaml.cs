@@ -19,13 +19,20 @@ public partial class EquationUsePage : ContentPage
     }
     
     Entity selectedExpr;
-    Entity createdExpr;
+    EquationStats es;
+    Dictionary<string, float> variables = new();
 
     private void Calculate_Clicked(object sender, EventArgs e)
     {
-        result.Text = createdExpr.ToString() + "  |  " + selectedExpr.ToString();
+        Entity createdExpr = selectedExpr;
+        foreach (var pair in variables)
+        {
+            createdExpr = createdExpr.Substitute(pair.Key, pair.Value);
+        }
+        string answer = createdExpr.EvalNumerical().ToString();
+        result.Text = createdExpr.ToString() + "  |  " + selectedExpr.ToString() + "  |  " + answer;
     }
-    
+
     private void Input_Changed(object sender, TextChangedEventArgs e)
     {
         Entry entry = (Entry)sender;
@@ -35,14 +42,17 @@ public partial class EquationUsePage : ContentPage
 
         result.Text = $"{variable} - nazwa zmienna,  dane zmienneh  {value}";
 
-        createdExpr = selectedExpr.Substitute(variable, value); // sie zapomianaj zmeinne inne ustawione JESTSMY TAK BLISKO
+        if (variables.ContainsKey(variable))
+            variables[variable] = value;
+        else
+            variables.Add(variable, value);
     }
 
     private void Page_Loaded(object sender, EventArgs e)
     {
         ContentPage page = (ContentPage)sender;
         EquationUseViewModel useViewModel = (EquationUseViewModel)page.BindingContext;
-        EquationStats es = useViewModel.EquationStats;
+        es = useViewModel.EquationStats;
         selectedExpr = es.MathExpression;
     }
 }

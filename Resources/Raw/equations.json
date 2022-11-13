@@ -1,8 +1,8 @@
 [
   {
     "Name": "Suma Ciągu Artmetycznego",
-    "Searched": ["a1","an","n"],
-    "MathExpression": "(a1 + an) / 2 * n"
+    "Searched": ["ajeden","an", "n"],
+    "MathExpression": "((ajeden + an) / 2) * n"
   },
   {
     "Name": "N w ciągu Artmetycznym",
