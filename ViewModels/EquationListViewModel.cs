@@ -16,13 +16,13 @@ namespace ProjektTales.ViewModels
             Title = "Equations";
             this.equationService = equationService;
         }
-
+        /*
         [RelayCommand]
         async Task EnterCreateModeAsync()
         {
             
         }
-
+        */
         [RelayCommand]
         async Task EnterEquationModeAsync(EquationStats stats)
         {
