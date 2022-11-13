@@ -30,13 +30,30 @@
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EquationListViewModel}}, Path=EnterEquationModeCommand}" CommandParameter="{Binding .}" />
                         </Frame.GestureRecognizers>
-                        <Label
-                            Padding="5"
-                            FontAttributes="Bold"
-                            FontSize="Medium"
-                            HorizontalTextAlignment="Center"
-                            Text="{Binding Name}"
-                            TextColor="DarkViolet" />
+                        <StackLayout>
+                            <Label
+                                Padding="2"
+                                FontAttributes="Bold"
+                                FontSize="Medium"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding Name}"
+                                TextColor="DarkViolet" />
+                            <BoxView
+                                HeightRequest="2"
+                                HorizontalOptions="Fill"
+                                Color="Gray" />
+                            <CollectionView ItemsSource="{Binding Searched}" SelectionMode="None">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="ListView">
+                                        <Label
+                                            FontAttributes="Italic"
+                                            FontSize="Medium"
+                                            Text="{Binding .}"
+                                            TextColor="MediumVioletRed" />
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

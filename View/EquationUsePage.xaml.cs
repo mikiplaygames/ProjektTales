@@ -1,7 +1,5 @@
 using AngouriMath;
-using AngouriMath.Extensions;
 using ProjektTales.ViewModels;
-using ProjektTales.Model;
 
 namespace ProjektTales;
 
