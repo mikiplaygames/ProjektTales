@@ -11,18 +11,20 @@
     Loaded="Page_Loaded">
 
     <VerticalStackLayout>
-        <Grid RowDefinitions="Auto,Auto,50">
+        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,80,50">
             <CollectionView
                 Grid.Row="0"
+                Grid.ColumnSpan="4"
                 ItemsSource="{Binding EquationStats.Searched}"
                 SelectionMode="None">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Entry
                             x:Name="{Binding .}"
+                            Focused="Set_Current_Entry"
                             Keyboard="Numeric"
                             Placeholder="{Binding .}"
-                            TextChanged="Input_Changed" />
+                            TextChanged="Entry_Changed" />
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
@@ -30,14 +32,24 @@
             <Label
                 x:Name="result"
                 Grid.Row="1"
+                Grid.ColumnSpan="2"
                 Padding="10"
                 FontSize="Medium"
                 HorizontalTextAlignment="Center" />
             <Button
                 Grid.Row="2"
+                Clicked="Insert_Symbol"
+                Text="*" />
+            <Button
+                Grid.Row="2"
+                Grid.Column="1"
+                Clicked="Insert_Symbol"
+                Text="/" />
+            <Button
+                Grid.Row="3"
+                Grid.ColumnSpan="4"
                 Clicked="Calculate_Clicked"
                 Text="Oblicz" />
-
         </Grid>
     </VerticalStackLayout>
 </ContentPage>

@@ -18,6 +18,7 @@ public partial class EquationUsePage : ContentPage
     
     Entity selectedExpr;
     EquationStats es;
+    Entry selectedEntry;
     Dictionary<string, string> variables = new();
 
     private void Calculate_Clicked(object sender, EventArgs e)
@@ -26,23 +27,45 @@ public partial class EquationUsePage : ContentPage
         
         foreach (var pair in variables)
         {
-            Entity val = pair.Value;
-            if (val.EvaluableNumerical)
-                createdExpr = createdExpr.Substitute(pair.Key, val.EvalNumerical());
+            string val = pair.Value;
+            
+            if (pair.Value.StartsWith('*') || pair.Value.EndsWith('*'))
+                val = val.Replace('*', ' ');
+            if (pair.Value.StartsWith('/') || pair.Value.EndsWith('/'))
+                val = val.Replace('/', ' ');
+            
+            Entity toEvaluate = val;
+            if (toEvaluate.EvaluableNumerical)
+                createdExpr = createdExpr.Substitute(pair.Key, toEvaluate.EvalNumerical());
             else
                 createdExpr = createdExpr.Substitute(pair.Key, pair.Value);
         }
         
         if (createdExpr.EvaluableNumerical)
-        {
-            string answer = createdExpr.EvalNumerical().ToString();
-            result.Text = selectedExpr.ToString() + "  |  " + createdExpr.ToString() + "  |  " + answer;
-        }
+            result.Text = $"{selectedExpr} | {createdExpr} | odp: {createdExpr.EvalNumerical()}";
         else
             result.Text = "Expression is not evaluable";
     }
 
-    private void Input_Changed(object sender, TextChangedEventArgs e)
+    private void Insert_Symbol(object sender, EventArgs e)
+    {
+        Button clickedButton = (Button)sender;
+
+        if (selectedEntry.Text.Length != 0 && !selectedEntry.Text.Contains(clickedButton.Text))
+            selectedEntry.Text += clickedButton.Text;
+        else
+            return;
+    }
+
+    private void Set_Current_Entry(object sender, FocusEventArgs e)
+    {
+        Entry entry = (Entry)sender;
+
+        if (selectedEntry is null || selectedEntry != entry)
+            selectedEntry = entry;
+    }
+
+    private void Entry_Changed(object sender, TextChangedEventArgs e)
     {
         Entry entry = (Entry)sender;
         string variable = entry.Placeholder;
