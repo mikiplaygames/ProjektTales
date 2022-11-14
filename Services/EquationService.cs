@@ -17,7 +17,7 @@ namespace ProjektTales.Services
         
         List<EquationStats> equations;
 
-        public async Task<List<EquationStats>> GetEquasions()
+        public async Task<List<EquationStats>> GetEquasionsAsync()
         {
             NetworkAccess accessType = Connectivity.Current.NetworkAccess;
             if (accessType == NetworkAccess.Internet)

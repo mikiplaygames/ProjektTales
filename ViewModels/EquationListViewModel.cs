@@ -45,7 +45,7 @@ namespace ProjektTales.ViewModels
             {
                 IsBusy = true;
 
-                var equations = await equationService.GetEquasions();
+                var equations = await equationService.GetEquasionsAsync();
                 if (equations.Count != 0)
                     Equations.Clear();
                 
