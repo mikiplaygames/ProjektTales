@@ -1,4 +1,5 @@
 ﻿global using ProjektTales.Model;
+using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using ProjektTales.Services;
 using ProjektTales.ViewModels;
@@ -17,8 +18,9 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
-
-		builder.Services.AddSingleton<MainPage>();
+        
+        builder.UseMauiApp<App>().UseMauiCommunityToolkit();
+        builder.Services.AddSingleton<MainPage>();
         builder.Services.AddSingleton<EquationListViewModel>();
 
         builder.Services.AddTransient<EquationUsePage>();

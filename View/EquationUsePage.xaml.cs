@@ -18,30 +18,39 @@ public partial class EquationUsePage : ContentPage
     
     Entity selectedExpr;
     EquationStats es;
-    Dictionary<string, float> variables = new();
+    Dictionary<string, string> variables = new();
 
     private void Calculate_Clicked(object sender, EventArgs e)
     {
         Entity createdExpr = selectedExpr;
+        
         foreach (var pair in variables)
         {
-            createdExpr = createdExpr.Substitute(pair.Key, pair.Value);
+            Entity val = pair.Value;
+            if (val.EvaluableNumerical)
+                createdExpr = createdExpr.Substitute(pair.Key, val.EvalNumerical());
+            else
+                createdExpr = createdExpr.Substitute(pair.Key, pair.Value);
         }
-        string answer = createdExpr.EvalNumerical().ToString();
-        result.Text = selectedExpr.ToString() + "  |  " + createdExpr.ToString() + "  |  " + answer;
+        
+        if (createdExpr.EvaluableNumerical)
+        {
+            string answer = createdExpr.EvalNumerical().ToString();
+            result.Text = selectedExpr.ToString() + "  |  " + createdExpr.ToString() + "  |  " + answer;
+        }
+        else
+            result.Text = "Expression is not evaluable";
     }
 
     private void Input_Changed(object sender, TextChangedEventArgs e)
     {
         Entry entry = (Entry)sender;
         string variable = entry.Placeholder;
-
-        float.TryParse(entry.Text, out float value);
         
         if (variables.ContainsKey(variable))
-            variables[variable] = value;
+            variables[variable] = entry.Text;
         else
-            variables.Add(variable, value);
+            variables.Add(variable, entry.Text);
     }
 
     private void Page_Loaded(object sender, EventArgs e)
