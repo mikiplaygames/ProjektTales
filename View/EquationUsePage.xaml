@@ -20,7 +20,6 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Entry
-                            x:Name="{Binding .}"
                             Focused="Set_Current_Entry"
                             Keyboard="Numeric"
                             Placeholder="{Binding .}"

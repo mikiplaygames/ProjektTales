@@ -40,7 +40,7 @@ public partial class EquationUsePage : ContentPage
             else
                 createdExpr = createdExpr.Substitute(pair.Key, pair.Value);
         }
-        
+
         if (createdExpr.EvaluableNumerical)
             result.Text = $"{selectedExpr} | {createdExpr} | odp: {createdExpr.EvalNumerical()}";
         else
@@ -51,7 +51,7 @@ public partial class EquationUsePage : ContentPage
     {
         Button clickedButton = (Button)sender;
 
-        if (selectedEntry.Text.Length != 0 && !selectedEntry.Text.Contains(clickedButton.Text))
+        if (selectedEntry.Text.Length != 0 && !selectedEntry.Text.Contains(clickedButton.Text) && selectedEntry != null)
             selectedEntry.Text += clickedButton.Text;
         else
             return;
